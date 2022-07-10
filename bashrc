@@ -148,5 +148,6 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 export EDITOR=/bin/vim
 
 alias myr="cat /dev/urandom | base64 | tr -dc 'a-zA-Z0-9' | fold -w 20 | head -n 10"
-alias ll="ls -latr"
+alias ll="ls -latr -h"
 . "$HOME/.cargo/env"
+alias cat="bat"
