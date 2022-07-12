@@ -2,6 +2,6 @@
 
 Run the ´setup.sh´ file in order to install the dotfiles.
 
-´´´bash
+```bash
 $ ./setup.sh
-´´´
+```
