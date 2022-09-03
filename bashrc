@@ -149,5 +149,6 @@ export EDITOR=/bin/vim
 
 alias myr="cat /dev/urandom | base64 | tr -dc 'a-zA-Z0-9' | fold -w 20 | head -n 10"
 alias ll="ls -latr -h"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 alias cat="bat"
+# alias tmux="tmux source $HOME/.tmux.conf"
