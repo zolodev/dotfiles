@@ -151,6 +151,9 @@ alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fo
 alias ll="ls -latr -h"
 # . "$HOME/.cargo/env"
 alias cat="bat"
+alias top="btop"
+alias htop="btop"
+
 # alias tmux="tmux source $HOME/.tmux.conf"
 
 # Codium alias
