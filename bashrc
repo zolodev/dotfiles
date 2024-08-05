@@ -151,11 +151,39 @@ alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fo
 alias ll="ls -latr -h"
 # . "$HOME/.cargo/env"
 alias cat="bat"
-alias top="btop"
-alias htop="btop"
+alias bat="batcat"
+alias top="htop "
+#alias htop="btop"
+#alias btop="btop"
 
 # alias tmux="tmux source $HOME/.tmux.conf"
 
 # Codium alias
-alias c="codium $1"
-alias code="codium $1"
+#alias c="codium $1"
+#alias code="codium $1"
+
+export LANG=en_US.UTF-8
+
+
+# ---------------------------------
+#
+# Custom Autorun commands
+#
+# ---------------------------------
+if [[ -n $SSH_CONNECTION ]] ; then
+
+    session_name="main"
+
+    # Check if a tmux session exists with the given name
+    tmux has-session -t="$session_name" 2>/dev/null
+
+    # Create the session if it doesn't exist
+    if [[ $? -ne 0 ]]; then
+        # creating new session
+        $HOME/.start_tmux.sh
+        echo "Creating tmux session named 'main'"
+    fi
+    
+    tmux attach -t "$session_name"
+    
+fi

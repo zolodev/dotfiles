@@ -16,7 +16,7 @@ rm -rf $HOME/.vim
 mv $HOME/.bashrc $HOME/.bashrc_old
 rm -rf $HOME/.dir_colors
 rm -rf $HOME/.tmux.conf
-
+rm -rf $HOME/.start_tmux.sh
 
 unlink $HOME/.vimrc
 ln -s $PWD/vimrc $HOME/.vimrc
@@ -33,7 +33,11 @@ ln -s $PWD/.dir_colors $HOME/.dir_colors
 unlink $HOME/.tmux.conf
 ln -s $PWD/tmux.conf $HOME/.tmux.conf
 
+unlink $HOME/.start_tmux.sh
+ln -s $PWD/start_tmux.sh $HOME/.start_tmux.sh
 
+unlink /etc/cron.daily/auto_update.sh
+sudo ln -s $PWD/auto_update.sh /etc/cron.daily/auto_update.sh
 
 # Install tmux plugins
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
