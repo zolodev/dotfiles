@@ -36,6 +36,7 @@ ln -s $PWD/tmux.conf $HOME/.tmux.conf
 unlink $HOME/.start_tmux.sh
 ln -s $PWD/start_tmux.sh $HOME/.start_tmux.sh
 
+# This will run auto update once each day
 unlink /etc/cron.daily/auto_update.sh
 sudo ln -s $PWD/auto_update.sh /etc/cron.daily/auto_update.sh
 
