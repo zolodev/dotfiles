@@ -3,13 +3,8 @@
 echo "Installing dot files for current user"
 echo $USER
 
-
-# CURRENT_PATH=${pwd}
+# Getting the full path from where the script is executed from
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-# echo $HOME
-
-
-# $SCRIPT_DIR/vimrc
 
 # Unlink previous links if any before remove files
 unlink $HOME/.vimrc
