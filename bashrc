@@ -153,7 +153,7 @@ alias ll="ls -latr -h"
 alias cat="bat"
 alias bat="batcat"
 alias top="htop "
-
+alias grep="rg"
 # alias tmux="tmux source $HOME/.tmux.conf"
 
 # Codium alias
@@ -185,3 +185,7 @@ if [[ -n $SSH_CONNECTION ]] ; then
     tmux attach -t "$session_name"
     
 fi
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
