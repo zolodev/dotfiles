@@ -5,6 +5,7 @@ tmux new-session -d -s main
 
 # Split the window
 tmux split-window -v -p 70  # 70% does not seem to work
+tmux split-window -h
 
 # Load the first pane with btop
 tmux send-keys -t main:0.0 'btop' C-m
