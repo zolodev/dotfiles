@@ -96,6 +96,7 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 # alias ls='ls --color=auto -h --group-directories-first'
+alias mux='~/.start_tmux.sh'
 
 xhost +local:root > /dev/null 2>&1
 
@@ -154,6 +155,8 @@ alias cat="bat"
 alias bat="batcat"
 alias top="htop "
 alias grep="rg"
+alias mk="make -j $(($(nproc)+1))"
+alias python="python3"
 # alias tmux="tmux source $HOME/.tmux.conf"
 
 # Codium alias
