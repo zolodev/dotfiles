@@ -90,15 +90,6 @@ fi
 
 unset use_color safe_term match_lhs sh
 
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
-# alias ls='ls --color=auto -h --group-directories-first'
-alias mux='~/.start_tmux.sh'
-alias make="time make"
-
 xhost +local:root > /dev/null 2>&1
 
 complete -cf sudo
@@ -108,10 +99,7 @@ complete -cf sudo
 # it regains control.  #65623
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
-
 shopt -s expand_aliases
-
-# export QT_SELECT=4
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
@@ -141,37 +129,14 @@ ex ()
   fi
 }
 
-# better yaourt colors
-# export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
-
-#export VISUAL=vim
-#export EDITOR="$VISUAL"
-
-export EDITOR=/bin/vim
-
-alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fold -w 50 | head -n 20"
-alias ll="ls -latr -h"
-# . "$HOME/.cargo/env"
-alias cat="bat"
-alias bat="batcat"
-alias top="htop "
-alias grep="rg"
-alias mk="make -j $(($(nproc)+1))"
-alias python="python3"
-# alias tmux="tmux source $HOME/.tmux.conf"
-
-# Codium alias
-#alias c="codium $1"
-#alias code="codium $1"
-
-export LANG=en_US.UTF-8
-
 
 # ---------------------------------
 #
 # Custom Autorun commands
 #
 # ---------------------------------
+
+# Startup tmux default view
 if [[ -n $SSH_CONNECTION ]] ; then
 
     session_name="main"
@@ -190,6 +155,55 @@ if [[ -n $SSH_CONNECTION ]] ; then
     
 fi
 
+# ---------------------------------
+#
+# Custom Aliases
+#
+# ---------------------------------
+
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias np='nano -w PKGBUILD'
+alias more=less
+alias mux='~/.start_tmux.sh'
+alias make="time make"
+alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fold -w 50 | head -n 20"
+alias ll="ls -latr -h"
+alias cat="bat"
+alias bat="batcat"
+alias top="htop "
+alias grep="rg"
+alias mk="make -j $(($(nproc)+1))"
+alias python="python3"
+# alias tmux="tmux source $HOME/.tmux.conf"
+# alias ls='ls --color=auto -h --group-directories-first'
+
+# Codium alias
+#alias c="codium $1"
+#alias code="codium $1"
+
+
+# ---------------------------------
+#
+# Custom Exports
+#
+# ---------------------------------
+
+# Default Language
+export LANG=en_US.UTF-8
+
+# Default Editor
+export EDITOR=/bin/vim
+
+# better yaourt colors
+# export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
+#export VISUAL=vim
+#export EDITOR="$VISUAL"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
+
+# export QT_SELECT=4
+
