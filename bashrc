@@ -97,6 +97,7 @@ alias np='nano -w PKGBUILD'
 alias more=less
 # alias ls='ls --color=auto -h --group-directories-first'
 alias mux='~/.start_tmux.sh'
+alias make="time make"
 
 xhost +local:root > /dev/null 2>&1
 
