@@ -168,6 +168,7 @@ alias np='nano -w PKGBUILD'
 alias more=less
 alias mux='~/.start_tmux.sh'
 alias make="time make"
+alias bake="make -j $(($(nproc)+1))"
 alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fold -w 50 | head -n 20"
 alias ll="ls -latr -h"
 alias cat="bat"
