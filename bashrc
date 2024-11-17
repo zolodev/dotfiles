@@ -167,6 +167,7 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 alias mux='~/.start_tmux.sh'
+alias ta="tmux a"
 #alias make="time make"
 alias bake="time make -j $(($(nproc)+1))"
 alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fold -w 50 | head -n 20"
