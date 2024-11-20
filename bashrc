@@ -209,3 +209,7 @@ export PATH=$BUN_INSTALL/bin:$PATH
 
 # export QT_SELECT=4
 
+# Ensure to add ssh-key
+eval "$(ssh-agent -s)" > /dev/null
+ssh-add ~/.ssh/id_ed25519
+
