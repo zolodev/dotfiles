@@ -178,6 +178,7 @@ alias top="htop "
 alias grep="rg"
 alias mk="make -j $(($(nproc)+1))"
 alias python="python3"
+alias baked="time make -j1 V=sc"
 # alias tmux="tmux source $HOME/.tmux.conf"
 # alias ls='ls --color=auto -h --group-directories-first'
 
@@ -211,5 +212,5 @@ export PATH=$BUN_INSTALL/bin:$PATH
 
 # Ensure to add ssh-key
 eval "$(ssh-agent -s)" > /dev/null
-ssh-add ~/.ssh/id_ed25519
+ssh-add ~/.ssh/id_builder_ed25519
 
