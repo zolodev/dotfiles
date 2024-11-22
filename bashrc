@@ -214,5 +214,5 @@ export PATH=$BUN_INSTALL/bin:$PATH
 
 # Ensure to add ssh-key
 eval "$(ssh-agent -s)" > /dev/null
-ssh-add ~/.ssh/id_builder_ed25519
+ssh-add ~/.ssh/id_*_ed25519
 
