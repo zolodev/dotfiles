@@ -50,5 +50,8 @@ ln -s $SCRIPT_DIR/tmux.service $HOME/.config/systemd/user/tmux.service
 sudo ln -s $SCRIPT_DIR/tmux.service /etc/systemd/system
 sudo systemctl enable tmux --now
 
+# Print success message echo "Setup completed successfully" 
+echo "Setup completed successfully"
+
 # Ensure the script exits with status code 0 exit 0
 exit 0
