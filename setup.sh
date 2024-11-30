@@ -49,3 +49,6 @@ ln -s $SCRIPT_DIR/tmux.service $HOME/.config/systemd/user/tmux.service
 # Adding tmux.service to global systemd
 sudo ln -s $SCRIPT_DIR/tmux.service /etc/systemd/system
 sudo systemctl enable tmux --now
+
+# Ensure the script exits with status code 0 exit 0
+exit 0
