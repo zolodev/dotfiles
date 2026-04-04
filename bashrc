@@ -114,7 +114,7 @@ ex ()
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
+      *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
       *.tar)       tar xf $1    ;;
       *.tbz2)      tar xjf $1   ;;
@@ -190,8 +190,9 @@ alias baked="time make -j1 V=sc"
 # alias ls='ls --color=auto -h --group-directories-first'
 
 # Codium alias
-alias c="codium $1"
+#alias c="codium $1"
 alias code="codium $1"
+alias codium="flatpak run com.vscodium.codium"
 
 if [[ "$ID" == "fedora" && "$VARIANT_ID" == "silverblue" ]]; then
 
@@ -199,12 +200,8 @@ if [[ "$ID" == "fedora" && "$VARIANT_ID" == "silverblue" ]]; then
     command_not_found_handle() {
         toolbox run "$@"
     }
-    
-#else
-    #Alias for other dist
+
 fi
-
-
 
 # ---------------------------------
 #
