@@ -161,30 +161,49 @@ fi
 #
 # ---------------------------------
 
+source /etc/os-release
+
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
+alias ll="ls -latr -h"
+alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fold -w 50 | head -n 20"
 alias np='nano -w PKGBUILD'
+alias grep="rg"
+#alias vim="toolbox run vim"
+alias cat="bat"
 alias more=less
 alias mux='~/.start_tmux.sh'
 alias ta="tmux a"
-#alias make="time make"
-alias bake="time make -j $(nproc+1) V=s"
-alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fold -w 50 | head -n 20"
-alias ll="ls -latr -h"
-alias cat="bat"
-alias bat="batcat"
+#alias bake="time make -j $(nproc+1) V=s"
+alias bake='time make -j $(( $(nproc) + 1 )) V=s'
 alias top="htop "
-alias grep="rg"
-alias mk="make -j $(nproc+1)"
+#alias mk="make -j $(nproc+1)"
+alias mk='make -j $(( $(nproc) + 1 ))'
 alias python="python3"
+alias py="python"
 alias baked="time make -j1 V=sc"
+
+#alias make="time make"
+#alias bat="batcat"
 # alias tmux="tmux source $HOME/.tmux.conf"
 # alias ls='ls --color=auto -h --group-directories-first'
 
 # Codium alias
-#alias c="codium $1"
-#alias code="codium $1"
+alias c="codium $1"
+alias code="codium $1"
+
+if [[ "$ID" == "fedora" && "$VARIANT_ID" == "silverblue" ]]; then
+
+    # Kör kommandon via toolbox automatiskt om de inte finns lokalt
+    command_not_found_handle() {
+        toolbox run "$@"
+    }
+    
+#else
+    #Alias for other dist
+fi
+
 
 
 # ---------------------------------
@@ -207,8 +226,10 @@ export EDITOR=/bin/vim
 #export EDITOR="$VISUAL"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
+if [ -d "$HOME/.bun" ]; then
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH=$BUN_INSTALL/bin:$PATH
+fi
 
 # export QT_SELECT=4
 

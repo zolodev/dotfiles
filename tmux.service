@@ -2,20 +2,18 @@
 Description=tmux default session (detached)
 Documentation=man:tmux(1)
 
-
 [Service]
-Type=forking
-Environment=DISPLAY=:0
+Type=oneshot
+RemainAfterExit=yes
+
+# Start tmux-sessionen
 ExecStart=/usr/bin/tmux new-session -d
 
+# Run tmux-resurrect save-script to the users home directory
+ExecStop=%h/.tmux/plugins/tmux-resurrect/scripts/save.sh
 
-ExecStop=/home/zolo/.tmux/plugins/tmux-resurrect/scripts/save.sh
-ExecStop=/usr/bin/tmux kill-server
-KillMode=none
-
-
-RestartSec=2
-
+# Close session
+ExecStop=/usr/bin/tmux kill-session
 
 [Install]
 WantedBy=default.target

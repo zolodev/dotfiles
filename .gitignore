@@ -1,1 +1,2 @@
 tmux_resurrect_save_files
+*.tar*

@@ -16,9 +16,12 @@ unlink $HOME/.start_tmux.sh
 unlink $HOME/.hushlogin
 
 # Remove any old files
+if [ -f "$HOME/.bashrc" ]; then
+    mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
+fi
+
 rm -rf $HOME/.vimrc
 rm -rf $HOME/.vim
-mv $HOME/.bashrc $HOME/.bashrc_old
 rm -rf $HOME/.dir_colors
 rm -rf $HOME/.tmux.conf
 rm -rf $HOME/.start_tmux.sh
@@ -34,21 +37,54 @@ ln -s $SCRIPT_DIR/start_tmux.sh $HOME/.start_tmux.sh
 ln -s $SCRIPT_DIR/hushlogin $HOME/.hushlogin
 
 
-# This will run auto update once each day
-unlink /etc/cron.daily/auto_update.sh
-sudo ln -s $SCRIPT_DIR/auto_update.sh /etc/cron.daily/auto_update.sh
+# This will install (if cron is available) and run auto update once each day
+if [ -d "/etc/cron.daily" ]; then
+    unlink /etc/cron.daily/auto_update.sh
+    sudo ln -s $SCRIPT_DIR/auto_update.sh /etc/cron.daily/auto_update.sh
+else
+    echo "/etc/cron does not exist!"
+fi
+
 
 # Install tmux plugins
+rm -rf "$HOME/.tmux/plugins/tpm"
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
-# Installing systemd tmux.service 
-rm -rf $HOME/.config/systemd/user/tmux.service
-mkdir -p $HOME/.config/systemd/user
-ln -s $SCRIPT_DIR/tmux.service $HOME/.config/systemd/user/tmux.service
+# --- Install tmux.service only if tmux is installed ---
+if command -v tmux >/dev/null 2>&1; then
+    echo "tmux command found, trying to install tmux.service."
 
-# Adding tmux.service to global systemd
-sudo ln -s $SCRIPT_DIR/tmux.service /etc/systemd/system
-sudo systemctl enable tmux --now
+    # Skip systemd installation inside Toolbox
+    if [ -f /run/.toolboxenv ]; then
+        echo "Toolbox environment detected, will NOT install tmux.service."
+    else
+        # Installing systemd tmux.service
+        SERVICE_NAME="tmux.service"
+        USER_SERVICE_PATH="$HOME/.config/systemd/user/$SERVICE_NAME"
+
+        # Remove old user service if it exists
+        if systemctl --user list-unit-files | grep -q "^$SERVICE_NAME"; then
+            systemctl --user disable --now tmux.service 2>/dev/null
+        fi
+
+        rm -rf "$USER_SERVICE_PATH"
+
+        # Install new user service
+        mkdir -p "$HOME/.config/systemd/user"
+        ln -s "$SCRIPT_DIR/tmux.service" "$USER_SERVICE_PATH"
+
+        # Remove old system service if it exists
+        if systemctl list-unit-files | grep -q "^$SERVICE_NAME"; then
+            systemctl disable --now tmux.service 2>/dev/null
+        fi
+
+        # Reload systemd and enable service
+        systemctl --user daemon-reload
+        systemctl --user enable --now tmux.service
+    fi
+else
+    echo "Cannot find tmux, tmux.service will not be installed."
+fi
 
 # Print success message echo "Setup completed successfully" 
 echo "Setup completed successfully"
