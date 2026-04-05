@@ -45,15 +45,6 @@ ln -s $SCRIPT_DIR/start_tmux.sh $HOME/.start_tmux.sh
 ln -s $SCRIPT_DIR/hushlogin $HOME/.hushlogin
 
 
-# This will install (if cron is available) and run auto update once each day
-if [ -d "/etc/cron.daily" ]; then
-    unlink /etc/cron.daily/auto_update.sh
-    sudo ln -s $SCRIPT_DIR/utils/auto_update.sh /etc/cron.daily/auto_update.sh
-else
-    echo "/etc/cron does not exist!"
-fi
-
-
 # Install tmux plugins
 rm -rf "$HOME/.tmux/plugins/tpm"
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
