@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+#****************************************************************************
+# Filename      : tbxctl.sh
+# Created       : Sat Apr 4 2026
+# Author        : Zolo
+# Github        : https://github.com/zolodev
+# Description   : Control script to manage toolboxes in Fedora Silverblue.
+#****************************************************************************
+
+
 set -e
 
 show_help() {
@@ -80,8 +89,8 @@ if [[ "$1" == "import" || "$1" == "-i" ]]; then
         echo "Choose an option:"
         echo "  1) Enter a new name"
         echo "  2) Auto-generate a new name"
-        echo "  3) Cancel import"
-        echo "  4) Overwrite existing toolbox"
+        echo "  3) Overwrite existing toolbox"
+        echo "  4) Cancel import"
         echo
 
         read -rp "Your choice (1/2/3/4): " CHOICE
@@ -106,10 +115,6 @@ if [[ "$1" == "import" || "$1" == "-i" ]]; then
                 echo "Auto-generated name: $CONTAINER"
                 ;;
             3)
-                echo "Import cancelled."
-                exit 0
-                ;;
-            4)
                 echo "Overwriting existing toolbox '$CONTAINER'..."
 
                 echo "Removing container..."
@@ -120,6 +125,10 @@ if [[ "$1" == "import" || "$1" == "-i" ]]; then
                 podman rmi -f "${CONTAINER}-image" || true
 
                 # DO NOT remove $IMAGE_NAME — that's the newly imported image
+                ;;
+            4)
+                echo "Import cancelled."
+                exit 0
                 ;;
             *)
                 echo "Invalid choice."

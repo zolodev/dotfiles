@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+#****************************************************************************
+# Filename      : setup.sh
+# Created       : Thu Jun 6 2024
+# Author        : Zolo
+# Github        : https://github.com/zolodev
+# Description   : Automate the installation of dotfiles and configurations.
+#****************************************************************************
+
 echo "Installing dot files for current user"
 echo $USER
 
@@ -40,7 +48,7 @@ ln -s $SCRIPT_DIR/hushlogin $HOME/.hushlogin
 # This will install (if cron is available) and run auto update once each day
 if [ -d "/etc/cron.daily" ]; then
     unlink /etc/cron.daily/auto_update.sh
-    sudo ln -s $SCRIPT_DIR/auto_update.sh /etc/cron.daily/auto_update.sh
+    sudo ln -s $SCRIPT_DIR/utils/auto_update.sh /etc/cron.daily/auto_update.sh
 else
     echo "/etc/cron does not exist!"
 fi
