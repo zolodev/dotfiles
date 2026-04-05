@@ -8,7 +8,6 @@
 # Description   : Control script to manage toolboxes in Fedora Silverblue.
 #****************************************************************************
 
-
 set -e
 
 show_help() {
