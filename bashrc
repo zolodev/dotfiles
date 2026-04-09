@@ -171,7 +171,8 @@ alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fo
 alias np='nano -w PKGBUILD'
 alias grep="rg"
 #alias vim="toolbox run vim"
-alias cat="bat"
+#alias cat="bat"
+alias cat='command -v bat >/dev/null 2>&1 && bat || batcat'
 alias more=less
 alias mux='~/.start_tmux.sh'
 alias ta="tmux a"
