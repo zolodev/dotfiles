@@ -1,17 +1,26 @@
 #!/bin/bash
 
-# Start a new session named 'main'
-tmux new-session -d -s main
+SESSION="main"
+
+# If session already exists, just attach
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  tmux attach -t "$SESSION"
+  exit 0
+fi
+
+# Build the default layout
+tmux new-session -d -s "$SESSION"
 
 # Split the window
-tmux split-window -v -p 70  # 70% does not seem to work
+tmux split-window -v -p 70
 tmux split-window -h
 
-# Load the first pane with btop
-tmux send-keys -t main:0.0 'btop' C-m
+# Apply exact layout
+tmux select-layout -t "$SESSION:0" '129a,252x69,0,0[252x30,0,0,0,252x38,0,31{214x38,0,31,1,37x38,215,31,2}]'
 
-# Load the secon pane with tmux clock
-tmux send-keys -t main:0.1 'tmux clock' C-m
+# Load panes
+tmux send-keys -t "$SESSION:0.0" 'btop' C-m
+tmux send-keys -t "$SESSION:0.1" 'tmux clock' C-m
 
-# Attach to the session
-tmux a -t 'main'
+# Attach
+tmux attach -t "$SESSION"
