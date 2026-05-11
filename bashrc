@@ -167,6 +167,7 @@ alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias ll="ls -latr -h"
+alias llog="tail -f $(ls -t *.log | head -1)"
 alias myr="cat /dev/urandom | tr -dc 'a-zA-Z0-9!#$%&()*+,-./:<=>?@[\]^_{}~' | fold -w 50 | head -n 20"
 alias np='nano -w PKGBUILD'
 alias grep="rg"
